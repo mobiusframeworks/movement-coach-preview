@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Wright — Hand Balancing, Coordination & Movement Patterns</title>
+<style>
+:root {
+  --bg: #faf9f6;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #b5651d;
+  --border: #e0dcd3;
+  --surface: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+
+/* Container — responsive */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+/* Header */
+header { padding: 28px 0; border-bottom: 1px solid var(--border); }
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
+nav { display: flex; gap: 32px; }
+nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.15s; }
+nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding: 80px 0 64px; }
+.hero .container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.hero .outcome { font-size: 1.1rem; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
+.hero p { font-size: 1.05rem; color: var(--muted); max-width: 500px; margin-bottom: 36px; }
+.hero .cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: opacity 0.15s;
+}
+.hero .cta:hover { opacity: 0.85; }
+.hero-image {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Sections */
+section { padding: 64px 0; }
+section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+
+/* What I teach — responsive grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+.card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+.card p { font-size: 0.9rem; color: var(--muted); }
+.card .card-image {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.card .card-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Process */
+.process { list-style: none; max-width: 600px; }
+.process li {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.process li:last-child { border-bottom: none; }
+.step {
+  width: 36px;
+  height: 36px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.process h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.process p { font-size: 0.9rem; color: var(--muted); }
+
+/* Testimonial */
+.testimonial {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.testimonial blockquote {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.testimonial cite { font-size: 0.9rem; color: var(--muted); font-style: normal; }
+
+/* Contact */
+.contact { text-align: center; padding: 80px 0; }
+.contact h2 { margin-bottom: 12px; }
+.contact p { color: var(--muted); margin-bottom: 28px; }
+.contact .cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* Footer */
+footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 0.85rem; color: var(--muted); }
+
+/* ===== Mobile ===== */
+@media (max-width: 700px) {
+  .container { padding: 0 20px; }
+  .hero { padding: 48px 0 40px; }
+  .hero .container { grid-template-columns: 1fr; gap: 32px; }
+  .hero-image { height: 260px; order: -1; }
+  .hero h1 { font-size: 1.75rem; }
+  section { padding: 48px 0; }
+  section h2 { font-size: 1.2rem; margin-bottom: 24px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .card .card-image { height: 160px; }
+  header { padding: 20px 0; }
+  header .container { flex-direction: column; gap: 12px; }
+  nav { gap: 20px; }
+  .testimonial { padding: 28px 20px; }
+  .contact { padding: 56px 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">Alex Wright</div>
+    <nav>
+      <a href="#what-i-teach">What I Teach</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div>
+      <h1>Build strength, control & awareness through hand balancing and movement</h1>
+      <p class="outcome">Work toward a freestanding handstand, confident movement, and a practice you can keep for life.</p>
+      <p>I help people develop real physical capability through clear, progressive coaching — from first kick-up to skills you can trust.</p>
+      <a href="#contact" class="cta">Book a free consultation</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600&h=400&fit=crop" alt="Hand balancing demonstration">
+    </div>
+  </div>
+</section>
+
+<section id="what-i-teach">
+  <div class="container">
+    <h2>What I teach</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=300&fit=crop" alt="Hand balancing practice">
+        </div>
+        <h3>Hand Balancing</h3>
+        <p>From your first kick-up to freestanding handstands and beyond. Progressive, skill-based coaching.</p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="Coordination and balance training">
+        </div>
+        <h3>Coordination</h3>
+        <p>Body awareness, timing, and control. Build the foundation that makes everything else easier.</p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=300&fit=crop" alt="Movement flow and practice">
+        </div>
+        <h3>Movement Patterns</h3>
+        <p>Flowing, practical movement. Connect individual skills into usable, real-world capability.</p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=300&fit=crop" alt="One-on-one coaching session">
+        </div>
+        <h3>One-on-One Coaching</h3>
+        <p>Personalized sessions tailored to your level, goals, and how you learn best.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <h2>What working together looks like</h2>
+    <ul class="process">
+      <li>
+        <div class="step">1</div>
+        <div>
+          <h3>Assessment</h3>
+          <p>We start with where you are — your current capabilities, goals, and any limitations.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">2</div>
+        <div>
+          <h3>Foundations</h3>
+          <p>Build the base: joint preparation, body awareness, and fundamental positions.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">3</div>
+        <div>
+          <h3>Progressions</h3>
+          <p>Step-by-step skill development. Clear milestones so you always know what to work on.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">4</div>
+        <div>
+          <h3>Practice plan</h3>
+          <p>You leave with a simple, repeatable practice you can do on your own.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="testimonial">
+      <blockquote>"[Testimonial goes here — a sentence or two from a real client about their experience and results.]"</blockquote>
+      <cite>— [Client Name]</cite>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Let's talk</h2>
+    <p>Interested in coaching? Have questions? Reach out and I'll get back to you within 24 hours.</p>
+    <a href="mailto:alex@example.com" class="cta">Send a message</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alex Wright. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
