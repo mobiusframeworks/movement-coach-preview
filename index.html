@@ -23,7 +23,7 @@ body {
 }
 img { display: block; max-width: 100%; height: auto; }
 
-/* Container — responsive */
+/* Container */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
 
 /* Header */
@@ -65,7 +65,7 @@ nav a:hover { color: var(--ink); }
   overflow: hidden;
   border: 1px solid var(--border);
 }
-.hero-image img { width: 100%; height: 100%; object-fit: cover; }
+.hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
 /* Sections */
 section { padding: 64px 0; }
@@ -76,7 +76,11 @@ section h2 {
   letter-spacing: -0.02em;
 }
 
-/* What I teach — responsive grid */
+/* About */
+.about .container { max-width: 680px; text-align: center; }
+.about p { font-size: 1.05rem; color: var(--muted); margin-bottom: 16px; }
+
+/* What I teach */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -123,6 +127,30 @@ section h2 {
 }
 .process h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
 .process p { font-size: 0.9rem; color: var(--muted); }
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.gallery-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-item.finale {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
+}
 
 /* Testimonial */
 .testimonial {
@@ -177,6 +205,8 @@ footer p { font-size: 0.85rem; color: var(--muted); }
   nav { gap: 20px; }
   .testimonial { padding: 28px 20px; }
   .contact { padding: 56px 0; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item.finale { grid-column: span 2; }
 }
 </style>
 </head>
@@ -186,8 +216,10 @@ footer p { font-size: 0.85rem; color: var(--muted); }
   <div class="container">
     <div class="logo">Alex Wright</div>
     <nav>
+      <a href="#about">About</a>
       <a href="#what-i-teach">What I Teach</a>
       <a href="#process">Process</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -202,8 +234,16 @@ footer p { font-size: 0.85rem; color: var(--muted); }
       <a href="#contact" class="cta">Book a free consultation</a>
     </div>
     <div class="hero-image">
-      <img src="photo_one_hand.jpeg" alt="Alex Wright demonstrating one-handed handstand">
+      <img src="photo_crouch.jpeg" alt="Alex Wright — hand balancing and movement coach">
     </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container">
+    <h2>About</h2>
+    <p>I'm Alex Wright — hand balancing, coordination, and movement patterns coach. I've spent years developing my own practice and now help others build real physical capability at any level.</p>
+    <p>My approach is simple: clear progressions, honest feedback, and a practice you can sustain for life.</p>
   </div>
 </section>
 
@@ -213,28 +253,28 @@ footer p { font-size: 0.85rem; color: var(--muted); }
     <div class="grid">
       <div class="card">
         <div class="card-image">
-          <img src="photo_hero.jpeg" alt="Alex Wright hand balancing practice">
+          <img src="photo_wall_handstand.jpeg" alt="Hand balancing progression — wall-supported handstand">
         </div>
         <h3>Hand Balancing</h3>
         <p>From your first kick-up to freestanding handstands and beyond. Progressive, skill-based coaching.</p>
       </div>
       <div class="card">
         <div class="card-image">
-          <img src="photo_handstand.jpeg" alt="Alex Wright handstand on court">
+          <img src="photo_handstand.jpeg" alt="Coordination and balance — freestanding handstand">
         </div>
         <h3>Coordination</h3>
         <p>Body awareness, timing, and control. Build the foundation that makes everything else easier.</p>
       </div>
       <div class="card">
         <div class="card-image">
-          <img src="photo_crouch.jpeg" alt="Alex Wright movement flow practice">
+          <img src="photo_hero.jpeg" alt="Movement patterns — floor-based flow">
         </div>
         <h3>Movement Patterns</h3>
         <p>Flowing, practical movement. Connect individual skills into usable, real-world capability.</p>
       </div>
       <div class="card">
         <div class="card-image">
-          <img src="photo_wall_handstand.jpeg" alt="Alex Wright one-on-one coaching">
+          <img src="photo_crouch.jpeg" alt="One-on-one coaching session">
         </div>
         <h3>One-on-One Coaching</h3>
         <p>Personalized sessions tailored to your level, goals, and how you learn best.</p>
@@ -276,6 +316,29 @@ footer p { font-size: 0.85rem; color: var(--muted); }
         </div>
       </li>
     </ul>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="photo_crouch.jpeg" alt="Alex Wright — starting position, building awareness">
+      </div>
+      <div class="gallery-item">
+        <img src="photo_hero.jpeg" alt="Alex Wright — floorwork and movement flow">
+      </div>
+      <div class="gallery-item">
+        <img src="photo_wall_handstand.jpeg" alt="Alex Wright — wall-supported handstand">
+      </div>
+      <div class="gallery-item">
+        <img src="photo_handstand.jpeg" alt="Alex Wright — freestanding handstand">
+      </div>
+      <div class="gallery-item finale">
+        <img src="photo_one_hand.jpeg" alt="Alex Wright — one-handed handstand, the goal">
+      </div>
+    </div>
   </div>
 </section>
 
