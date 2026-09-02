@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobius Site Agent — Architecture</title>
+<style>
+:root {
+  --bg: #0f1419;
+  --surface: #1a2028;
+  --border: #2d3748;
+  --ink: #e8eaed;
+  --muted: #8b949e;
+  --accent: #b5651d;
+  --blue: #58a6ff;
+  --green: #3fb950;
+  --purple: #bc8cff;
+  --orange: #f0883e;
+  --teal: #39d353;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  padding: 40px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+.subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 40px; }
+h2 { font-size: 1.25rem; font-weight: 600; margin: 32px 0 16px; color: var(--accent); }
+h3 { font-size: 1rem; font-weight: 600; margin: 24px 0 12px; color: var(--blue); }
+p { color: var(--muted); margin-bottom: 12px; }
+.subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 40px; }
+
+/* Diagram */
+.diagram { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin: 24px 0; overflow-x: auto; }
+.agent-box { background: var(--bg); border: 2px solid var(--accent); border-radius: 12px; padding: 24px; margin: 16px 0; }
+.agent-box h3 { color: var(--accent); margin: 0 0 16px; font-size: 1.1rem; text-align: center; }
+.modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.module { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+.module h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--green); }
+.module ul { list-style: none; padding: 0; }
+.module li { font-size: 0.75rem; color: var(--muted); padding: 2px 0; }
+.module li::before { content: "· "; color: var(--accent); }
+
+/* Arrows */
+.arrow { text-align: center; color: var(--accent); font-size: 1.5rem; margin: 8px 0; }
+
+/* Deploy targets */
+.deploy { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+.deploy-item { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 16px; font-size: 0.8rem; color: var(--purple); }
+
+/* Stack table */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+th { color: var(--muted); font-weight: 500; }
+td { color: var(--ink); }
+
+/* Phases */
+.phase { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.phase h4 { color: var(--orange); margin-bottom: 8px; }
+.phase ul { padding-left: 20px; }
+.phase li { color: var(--muted); font-size: 0.9rem; padding: 2px 0; }
+
+/* Product diff */
+.diff { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.diff-col { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+.diff-col h4 { font-size: 0.9rem; margin-bottom: 12px; }
+.diff-col.tool h4 { color: var(--muted); }
+.diff-col.product h4 { color: var(--green); }
+.diff-col ul { list-style: none; padding: 0; }
+.diff-col li { font-size: 0.8rem; color: var(--muted); padding: 4px 0; }
+.diff-col li::before { content: "→ "; color: var(--accent); }
+
+@media (max-width: 700px) {
+  body { padding: 24px 16px; }
+  .modules { grid-template-columns: 1fr 1fr; }
+  .diff { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<h1>Mobius Site Agent</h1>
+<p class="subtitle">An agent that interviews you, learns your story, and builds you a personal website.</p>
+
+<h2>Agent Architecture</h2>
+
+<div class="diagram">
+  <div class="agent-box">
+    <h3>🤖 SiteAgent (Hermes Profile: repo-siteagent)</h3>
+    <div class="modules">
+      <div class="module">
+        <h4>Discovery</h4>
+        <ul>
+          <li>Interview flow</li>
+          <li>You Model builder</li>
+          <li>Goal extraction</li>
+          <li>Vibe detection</li>
+        </ul>
+      </div>
+      <div class="module">
+        <h4>Content</h4>
+        <ul>
+          <li>Headlines</li>
+          <li>About text</li>
+          <li>Project cards</li>
+          <li>CTA copy</li>
+        </ul>
+      </div>
+      <div class="module">
+        <h4>Design</h4>
+        <ul>
+          <li>Color/Type</li>
+          <li>Layout variants</li>
+          <li>3 prototypes</li>
+          <li>Design review</li>
+        </ul>
+      </div>
+      <div class="module">
+        <h4>Photo</h4>
+        <ul>
+          <li>Composition analysis</li>
+          <li>Crop recommendations</li>
+          <li>Background detection</li>
+          <li>Object-position</li>
+        </ul>
+      </div>
+      <div class="module">
+        <h4>Build</h4>
+        <ul>
+          <li>HTML assembly</li>
+          <li>CSS/JS generation</li>
+          <li>Responsive</li>
+          <li>Version control</li>
+        </ul>
+      </div>
+      <div class="module">
+        <h4>Deploy</h4>
+        <ul>
+          <li>GitHub Pages</li>
+          <li>VPS nginx</li>
+          <li>Cloudflare</li>
+          <li>Custom domain</li>
+        </ul>
+      </div>
+      <div class="module">
+        <h4>Iterate</h4>
+        <ul>
+          <li>Feedback intake</li>
+          <li>Version history</li>
+          <li>Changelog</li>
+          <li>Suggestions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">↕</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+    <div class="module" style="border-color: var(--blue);">
+      <h4 style="color: var(--blue);">💬 Interaction</h4>
+      <ul>
+        <li>Telegram bot (P0)</li>
+        <li>Web chat + preview (P1)</li>
+        <li>Voice Room (P2)</li>
+      </ul>
+    </div>
+    <div class="module" style="border-color: var(--purple);">
+      <h4 style="color: var(--purple);">🗄️ Storage</h4>
+      <ul>
+        <li>You Model (SQLite)</li>
+        <li>Photos (filesystem/S3)</li>
+        <li>Builds (Git repos)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>Deploy Targets</h2>
+<div class="deploy">
+  <div class="deploy-item">📄 GitHub Pages</div>
+  <div class="deploy-item">🖥️ VPS nginx</div>
+  <div class="deploy-item">☁️ Cloudflare Pages</div>
+  <div class="deploy-item">🚀 Netlify</div>
+</div>
+
+<h2>Technical Stack</h2>
+<table>
+  <tr><th>Component</th><th>Choice</th><th>Rationale</th></tr>
+  <tr><td>Agent runtime</td><td>Hermes Agent</td><td>Already in Mobius</td></tr>
+  <tr><td>Profile</td><td>repo-siteagent</td><td>Scoped to site agent</td></tr>
+  <tr><td>Web frontend</td><td>Preact / Alpine</td><td>Lightweight, fast</td></tr>
+  <tr><td>Storage</td><td>SQLite → PostgreSQL</td><td>Simple, reliable</td></tr>
+  <tr><td>Photo analysis</td><td>vision_analyze</td><td>Built into Hermes</td></tr>
+  <tr><td>Deploy</td><td>Docker Compose</td><td>Reproducible</td></tr>
+  <tr><td>SSL</td><td>Let's Encrypt</td><td>Free, automated</td></tr>
+</table>
+
+<h2>Product vs Tool</h2>
+<div class="diff">
+  <div class="diff-col tool">
+    <h4>🧰 Traditional Builder</h4>
+    <ul>
+      <li>Fill out a form</li>
+      <li>Pick a template</li>
+      <li>Write the copy</li>
+      <li>Crop photos yourself</li>
+      <li>Hit publish alone</li>
+      <li>You're done</li>
+    </ul>
+  </div>
+  <div class="diff-col product">
+    <h4>🤖 SiteAgent</h4>
+    <ul>
+      <li>The agent interviews you</li>
+      <li>The agent learns your vibe</li>
+      <li>The agent writes in your voice</li>
+      <li>The agent analyzes composition</li>
+      <li>The agent asks "ready?"</li>
+      <li>The agent suggests improvements</li>
+    </ul>
+  </div>
+</div>
+
+<h2>MVP Phases</h2>
+
+<div class="phase">
+  <h4>Phase 1: Foundation (Week 1–2)</h4>
+  <ul>
+    <li>Hermes profile: repo-siteagent</li>
+    <li>Discovery Module: conversation → You Model</li>
+    <li>Content Module: headlines + about text</li>
+    <li>Design Module: 3 HTML variants</li>
+    <li>Photo Module: analyze + crop</li>
+    <li>Build Module: assemble deployable HTML</li>
+    <li>Deploy Module: push to GitHub Pages</li>
+    <li>Telegram bot as primary surface</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <h4>Phase 2: Polish (Week 3–4)</h4>
+  <ul>
+    <li>Web chat frontend with live preview</li>
+    <li>Approval gates (You Model, design, deploy)</li>
+    <li>Iterate Module: feedback → update → redeploy</li>
+    <li>Version history + rollback</li>
+    <li>VPS deployment with Docker Compose</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <h4>Phase 3: Product (Week 5–6)</h4>
+  <ul>
+    <li>Custom domain support</li>
+    <li>Multi-user (separate You Models)</li>
+    <li>Analytics (privacy-respecting)</li>
+    <li>Pricing/packaging exploration</li>
+  </ul>
+</div>
+
+<h2>Open Questions</h2>
+<ul style="padding-left: 20px; color: var(--muted);">
+  <li><strong>Name:</strong> SiteWeaver / Presence / Mobius Sites / SiteCraft / other?</li>
+  <li><strong>Pricing:</strong> Free for personal, paid for pro (custom domain, analytics, priority)?</li>
+  <li><strong>Multi-tenancy:</strong> One VPS per user, or shared with isolated sites?</li>
+  <li><strong>Framework:</strong> Stick with Hermes agent, or custom agent loop?</li>
+  <li><strong>Frontend:</strong> Telegram-only for MVP, or web chat from day one?</li>
+  <li><strong>Open source:</strong> Like Groundwork, or proprietary?</li>
+</ul>
+
+<p style="margin-top: 32px; font-size: 0.8rem; color: var(--muted);">Architecture v0.1 — 2026-09-02 — Built after movement coach prototype work</p>
+
+</body>
+</html>
