@@ -21,7 +21,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-img { display: block; max-width: 100%; height: auto; }
+img { display: block; max-width: 100%; }
 
 /* Container */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
@@ -59,13 +59,12 @@ nav a:hover { color: var(--ink); }
 }
 .hero .cta:hover { opacity: 0.85; }
 .hero-image {
-  width: 100%;
-  height: 380px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
+  background: #f0f0f0;
 }
-.hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.hero-image img { width: 100%; height: auto; display: block; }
 
 /* Sections */
 section { padding: 64px 0; }
@@ -96,12 +95,12 @@ section h2 {
 .card p { font-size: 0.9rem; color: var(--muted); }
 .card .card-image {
   width: 100%;
-  height: 180px;
   border-radius: 8px;
   margin-bottom: 16px;
   overflow: hidden;
+  background: #f0f0f0;
 }
-.card .card-image img { width: 100%; height: 100%; object-fit: cover; }
+.card .card-image img { width: 100%; height: auto; display: block; }
 
 /* Process */
 .process { list-style: none; max-width: 600px; }
@@ -128,29 +127,30 @@ section h2 {
 .process h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
 .process p { font-size: 0.9rem; color: var(--muted); }
 
-/* Gallery */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+/* Gallery - horizontal scroll */
+.gallery-scroll {
+  display: flex;
   gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--border);
 }
+.gallery-scroll::-webkit-scrollbar { height: 6px; }
+.gallery-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 3px; }
+.gallery-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 .gallery-item {
+  flex: 0 0 280px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
-  aspect-ratio: 3/4;
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  scroll-snap-align: start;
+  background: #f0f0f0;
 }
-.gallery-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-.gallery-item.finale {
-  grid-column: span 2;
-  aspect-ratio: 16/9;
-}
+.gallery-item img { width: 100%; height: auto; display: block; }
+.gallery-item.finale { flex: 0 0 400px; }
 
 /* Testimonial */
 .testimonial {
@@ -194,19 +194,18 @@ footer p { font-size: 0.85rem; color: var(--muted); }
   .container { padding: 0 20px; }
   .hero { padding: 48px 0 40px; }
   .hero .container { grid-template-columns: 1fr; gap: 32px; }
-  .hero-image { height: 260px; order: -1; }
+  .hero-image { order: -1; }
   .hero h1 { font-size: 1.75rem; }
   section { padding: 48px 0; }
   section h2 { font-size: 1.2rem; margin-bottom: 24px; }
   .grid { grid-template-columns: 1fr; gap: 16px; }
-  .card .card-image { height: 160px; }
   header { padding: 20px 0; }
   header .container { flex-direction: column; gap: 12px; }
   nav { gap: 20px; }
   .testimonial { padding: 28px 20px; }
   .contact { padding: 56px 0; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-item.finale { grid-column: span 2; }
+  .gallery-item { flex: 0 0 240px; }
+  .gallery-item.finale { flex: 0 0 300px; }
 }
 </style>
 </head>
@@ -322,7 +321,7 @@ footer p { font-size: 0.85rem; color: var(--muted); }
 <section id="gallery">
   <div class="container">
     <h2>Gallery</h2>
-    <div class="gallery-grid">
+    <div class="gallery-scroll">
       <div class="gallery-item">
         <img src="photo_crouch.jpeg" alt="Alex Wright — starting position, building awareness">
       </div>
