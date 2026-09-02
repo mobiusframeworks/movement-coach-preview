@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movement Coach — Design Prototypes</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f0; color: #1a1a1a; }
+
+  /* Switcher */
+  .switcher { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #1a1a1a; color: #fff; padding: 12px 20px; display: flex; align-items: center; gap: 16px; }
+  .switcher span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
+  .switcher button { background: transparent; border: 1px solid #444; color: #ccc; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.15s; }
+  .switcher button:hover, .switcher button.active { background: #b5651d; border-color: #b5651d; color: #fff; }
+  .switcher .label { margin-left: auto; font-size: 0.75rem; color: #666; }
+
+  .frame { padding-top: 56px; min-height: 100vh; }
+  .frame-inner { max-width: 1100px; margin: 0 auto; padding: 40px 32px; }
+  .frame h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .frame .desc { color: #666; font-size: 0.9rem; margin-bottom: 24px; }
+
+  /* Preview container */
+  .preview { border: 1px solid #ddd; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+  .preview-inner { overflow-y: auto; max-height: 75vh; border-radius: 12px; }
+  .preview-inner iframe { width: 100%; height: 75vh; border: none; display: block; }
+
+  @media (max-width: 700px) {
+    .switcher { flex-wrap: wrap; gap: 8px; padding: 10px 16px; }
+    .switcher .label { display: none; }
+    .frame-inner { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="switcher">
+  <span>Prototype:</span>
+  <button class="active" onclick="show('a', this)">A · Bold Name + Crop</button>
+  <button onclick="show('b', this)">B · Name Overlay</button>
+  <button onclick="show('c', this)">C · Clean Minimal</button>
+  <span class="label">Click to compare</span>
+</div>
+
+<div class="frame">
+  <div class="frame-inner">
+    <h3 id="title">Variant A — Bold Name + Cropped Hero</h3>
+    <p class="desc" id="desc">Large name in header, hero photo cropped tighter on the body (less wall), simplified nav.</p>
+    <div class="preview">
+      <div class="preview-inner">
+        <iframe id="preview" src="variant-a.html"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const info = {
+  a: { title: 'Variant A — Bold Name + Cropped Hero', desc: 'Large name in header, hero photo cropped tighter on the body (less wall), simplified nav.' },
+  b: { title: 'Variant B — Name Overlay on Photo', desc: 'Name overlaid large on the hero photo itself, minimal header, photo cropped to body.' },
+  c: { title: 'Variant C — Clean & Minimal', desc: 'Centered large name, ultra-simple nav, cropped hero, lots of breathing room.' }
+};
+function show(v, btn) {
+  document.getElementById('preview').src = 'variant-' + v + '.html';
+  document.getElementById('title').textContent = info[v].title;
+  document.getElementById('desc').textContent = info[v].desc;
+  document.querySelectorAll('.switcher button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

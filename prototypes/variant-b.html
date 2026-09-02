@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Wright — Hand Balancing & Movement</title>
+<style>
+:root {
+  --bg: #faf9f6;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #b5651d;
+  --border: #e0dcd3;
+  --surface: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+/* Minimal header */
+header { padding: 20px 0; position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1rem; font-weight: 600; color: #fff; letter-spacing: -0.02em; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+nav { display: flex; gap: 24px; }
+nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.8rem; transition: color 0.15s; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+nav a:hover { color: #fff; }
+
+/* Hero with overlay */
+.hero { position: relative; min-height: 85vh; display: flex; align-items: flex-end; padding: 0 0 80px; }
+.hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+.hero-bg::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.7) 100%); }
+.hero-content { position: relative; z-index: 5; width: 100%; }
+.hero .container { max-width: 1100px; }
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  max-width: 700px;
+}
+.hero .outcome { font-size: 1.1rem; color: #f0d090; font-weight: 500; margin-bottom: 12px; }
+.hero p { font-size: 1rem; color: rgba(255,255,255,0.85); max-width: 500px; margin-bottom: 32px; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+.hero .cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: opacity 0.15s;
+}
+.hero .cta:hover { opacity: 0.85; }
+
+/* Sections */
+section { padding: 64px 0; }
+section h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 32px; letter-spacing: -0.02em; }
+
+/* About */
+.about .container { max-width: 680px; text-align: center; }
+.about p { font-size: 1.05rem; color: var(--muted); margin-bottom: 16px; }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+.card p { font-size: 0.9rem; color: var(--muted); }
+.card .card-image { width: 100%; border-radius: 8px; margin-bottom: 16px; overflow: hidden; background: #f0f0f0; aspect-ratio: 4/3; }
+.card .card-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Process */
+.process { list-style: none; max-width: 600px; }
+.process li { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.process li:last-child { border-bottom: none; }
+.step { width: 36px; height: 36px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 600; flex-shrink: 0; }
+.process h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.process p { font-size: 0.9rem; color: var(--muted); }
+
+/* Gallery */
+.gallery-scroll { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 16px; scrollbar-width: thin; scrollbar-color: var(--accent) var(--border); }
+.gallery-scroll::-webkit-scrollbar { height: 6px; }
+.gallery-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 3px; }
+.gallery-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+.gallery-item { flex: 0 0 280px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); scroll-snap-align: start; background: #f0f0f0; aspect-ratio: 3/4; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-item.finale { flex: 0 0 400px; }
+
+/* Testimonial */
+.testimonial { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 40px; text-align: center; max-width: 680px; margin: 0 auto; }
+.testimonial blockquote { font-size: 1.1rem; font-style: italic; color: var(--ink); margin-bottom: 12px; }
+.testimonial cite { font-size: 0.9rem; color: var(--muted); font-style: normal; }
+
+/* Contact */
+.contact { text-align: center; padding: 80px 0; }
+.contact h2 { margin-bottom: 12px; }
+.contact p { color: var(--muted); margin-bottom: 28px; }
+.contact .cta { display: inline-block; background: var(--accent); color: #fff; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 1rem; }
+
+/* Footer */
+footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 0.85rem; color: var(--muted); }
+
+@media (max-width: 700px) {
+  .container { padding: 0 20px; }
+  .hero { min-height: 75vh; padding: 0 0 56px; }
+  .hero h1 { font-size: 2rem; }
+  section { padding: 48px 0; }
+  section h2 { font-size: 1.2rem; margin-bottom: 24px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  header { padding: 16px 0; }
+  header .container { flex-direction: column; gap: 8px; }
+  nav { gap: 16px; }
+  .testimonial { padding: 28px 20px; }
+  .contact { padding: 56px 0; }
+  .gallery-item { flex: 0 0 240px; }
+  .gallery-item.finale { flex: 0 0 300px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">Alex Wright</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#what-i-teach">Teach</a>
+      <a href="#process">Process</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg" alt="">
+  </div>
+  <div class="hero-content">
+    <div class="container">
+      <h1>Build strength, control & awareness through hand balancing and movement</h1>
+      <p class="outcome">Work toward a freestanding handstand, confident movement, and a practice you can keep for life.</p>
+      <p>I help people develop real physical capability through clear, progressive coaching — from first kick-up to skills you can trust.</p>
+      <a href="#contact" class="cta">Book a free consultation</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container">
+    <h2>About</h2>
+    <p>I'm Alex Wright — hand balancing, coordination, and movement patterns coach. I've spent years developing my own practice and now help others build real physical capability at any level.</p>
+    <p>My approach is simple: clear progressions, honest feedback, and a practice you can sustain for life.</p>
+  </div>
+</section>
+
+<section id="what-i-teach">
+  <div class="container">
+    <h2>What I teach</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_wall_handstand.jpeg" alt="Hand balancing progression — wall-supported handstand">
+        </div>
+        <h3>Hand Balancing</h3>
+        <p>From your first kick-up to freestanding handstands and beyond. Progressive, skill-based coaching.</p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_handstand.jpeg" alt="Coordination and balance — freestanding handstand">
+        </div>
+        <h3>Coordination</h3>
+        <p>Body awareness, timing, and control. Build the foundation that makes everything else easier.</p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_hero.jpeg" alt="Movement patterns — floor-based flow">
+        </div>
+        <h3>Movement Patterns</h3>
+        <p>Flowing, practical movement. Connect individual skills into usable, real-world capability.</p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg" alt="One-on-one coaching session">
+        </div>
+        <h3>One-on-One Coaching</h3>
+        <p>Personalized sessions tailored to your level, goals, and how you learn best.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <h2>What working together looks like</h2>
+    <ul class="process">
+      <li>
+        <div class="step">1</div>
+        <div>
+          <h3>Assessment</h3>
+          <p>We start with where you are — your current capabilities, goals, and any limitations.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">2</div>
+        <div>
+          <h3>Foundations</h3>
+          <p>Build the base: joint preparation, body awareness, and fundamental positions.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">3</div>
+        <div>
+          <h3>Progressions</h3>
+          <p>Step-by-step skill development. Clear milestones so you always know what to work on.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step">4</div>
+        <div>
+          <h3>Practice plan</h3>
+          <p>You leave with a simple, repeatable practice you can do on your own.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <h2>Gallery</h2>
+    <div class="gallery-scroll">
+      <div class="gallery-item">
+        <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg" alt="Alex Wright — starting position, building awareness">
+      </div>
+      <div class="gallery-item">
+        <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_hero.jpeg" alt="Alex Wright — floorwork and movement flow">
+      </div>
+      <div class="gallery-item">
+        <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_wall_handstand.jpeg" alt="Alex Wright — wall-supported handstand">
+      </div>
+      <div class="gallery-item">
+        <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_handstand.jpeg" alt="Alex Wright — freestanding handstand">
+      </div>
+      <div class="gallery-item finale">
+        <img src="https://mobiusframeworks.github.io/movement-coach-preview/photo_one_hand.jpeg" alt="Alex Wright — one-handed handstand, the goal">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="testimonial">
+      <blockquote>"[Testimonial goes here — a sentence or two from a real client about their experience and results.]"</blockquote>
+      <cite>— [Client Name]</cite>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Let's talk</h2>
+    <p>Interested in coaching? Have questions? Reach out and I'll get back to you within 24 hours.</p>
+    <a href="mailto:alex@example.com" class="cta">Send a message</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Alex Wright. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
