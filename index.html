@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index,follow">
 <title>Alex Wright | Personal Trainer & Movement Coach in Santa Cruz</title>
 <meta name="description" content="One-on-one personal training and movement coaching in Santa Cruz with Alex Wright. Build strength, coordination, body awareness, and hand-balancing skills through clear progressions.">
-<link rel="canonical" href="https://mobiusframeworks.github.io/movement-coach-preview/">
+<link rel="canonical" href="https://thewrightpractices.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Alex Wright | Personal Trainer & Movement Coach in Santa Cruz">
 <meta property="og:description" content="Personalized movement coaching, hand balancing, coordination, and strength training in Santa Cruz.">
-<meta property="og:url" content="https://mobiusframeworks.github.io/movement-coach-preview/">
-<meta property="og:image" content="https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg">
+<meta property="og:url" content="https://thewrightpractices.com/">
+<meta property="og:image" content="https://thewrightpractices.com/photo_crouch.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
@@ -18,8 +19,8 @@
   "@type": "ProfessionalService",
   "name": "Alex Wright",
   "alternateName": ["The Wright Practices", "Alex Wright Movement Coaching"],
-  "url": "https://mobiusframeworks.github.io/movement-coach-preview/",
-  "image": "https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg",
+  "url": "https://thewrightpractices.com/",
+  "image": "https://thewrightpractices.com/photo_crouch.jpeg",
   "email": "mailto:Wriga2024@gmail.com",
   "founder": {"@type": "Person", "name": "Alex Wright"},
   "areaServed": {"@type": "City", "name": "Santa Cruz", "addressRegion": "CA"},
@@ -29,14 +30,15 @@
 </script>
 <style>
 :root {
-  --bg: #faf9f6;
-  --ink: #1a1a1a;
-  --muted: #6b6b6b;
-  --accent: #b5651d;
-  --border: #e0dcd3;
-  --surface: #ffffff;
+  --bg: #EEF3EF;
+  --ink: #20302A;
+  --muted: #5D6D66;
+  --accent: #4F6F63;
+  --border: #CAD7D0;
+  --surface: #FBFDFC;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; max-width: 100%; overflow-x: clip; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
@@ -53,7 +55,7 @@ img { display: block; max-width: 100%; }
 header { padding: 28px 0; border-bottom: 1px solid var(--border); }
 header .container { display: flex; justify-content: space-between; align-items: center; }
 .brand-lockup { display: grid; gap: 1px; }
-.logo { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
+.logo { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
 .practice-name { color: var(--accent); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 nav { display: flex; gap: 32px; }
 nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.15s; }
@@ -252,10 +254,33 @@ footer a { color: var(--muted); }
   .gallery-item.finale { flex: 0 0 300px; }
   .calendly-shell, .calendly-inline-widget { min-height: 760px; height: 760px; }
 }
+
+/* Coastal Sage production theme */
+header { background: var(--surface); border-bottom-color: var(--border); }
+.logo { color: #3A241C; font-weight: 750; }
+nav { gap: 10px; }
+nav a {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 9px 15px;
+  color: #fff; background: #3F281F; border: 1px solid #3F281F;
+  border-radius: 999px; text-transform: none;
+  letter-spacing: 0; font-weight: 650;
+  box-shadow: 0 5px 14px rgba(57,42,34,.14);
+  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+nav a:hover { color: #fff; background: #5A392D; transform: translateY(-1px); }
+.hero .cta, .contact .cta { background: #3F281F; }
+.hero .cta:hover, .contact .cta:hover { background: #5A392D; }
+.hero .cta.secondary { background: transparent; color: #3F281F; border-color: #3F281F; }
+.hero-image, .card, .local-card, .calendly-shell { box-shadow: 0 12px 30px rgba(45,30,22,.07); }
+@media (max-width: 700px) {
+  nav { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  nav a { width: 100%; min-height: 38px; padding: 8px 10px; font-size: .82rem; }
+}
+
 </style>
 </head>
 <body>
-
 <header>
   <div class="container">
     <div class="brand-lockup">
