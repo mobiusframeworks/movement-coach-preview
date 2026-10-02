@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alex Wright — Hand Balancing, Coordination & Movement Patterns</title>
+<title>Alex Wright | Personal Trainer & Movement Coach in Santa Cruz</title>
+<meta name="description" content="One-on-one personal training and movement coaching in Santa Cruz with Alex Wright. Build strength, coordination, body awareness, and hand-balancing skills through clear progressions.">
+<link rel="canonical" href="https://mobiusframeworks.github.io/movement-coach-preview/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alex Wright | Personal Trainer & Movement Coach in Santa Cruz">
+<meta property="og:description" content="Personalized movement coaching, hand balancing, coordination, and strength training in Santa Cruz.">
+<meta property="og:url" content="https://mobiusframeworks.github.io/movement-coach-preview/">
+<meta property="og:image" content="https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "The Wright Practices",
+  "alternateName": "Alex Wright Movement Coaching",
+  "url": "https://mobiusframeworks.github.io/movement-coach-preview/",
+  "image": "https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg",
+  "email": "mailto:Wriga2024@gmail.com",
+  "founder": {"@type": "Person", "name": "Alex Wright"},
+  "areaServed": {"@type": "City", "name": "Santa Cruz", "addressRegion": "CA"},
+  "sameAs": ["https://www.instagram.com/thewrightpractices/"],
+  "serviceType": ["Personal training", "Movement coaching", "Hand-balancing coaching", "Coordination training"]
+}
+</script>
 <style>
 :root {
   --bg: #faf9f6;
@@ -33,6 +56,8 @@ header .container { display: flex; justify-content: space-between; align-items: 
 nav { display: flex; gap: 32px; }
 nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.15s; }
 nav a:hover { color: var(--ink); }
+.button-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.cta.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
 
 /* Hero */
 .hero { padding: 80px 0 64px; }
@@ -63,8 +88,9 @@ nav a:hover { color: var(--ink); }
   overflow: hidden;
   border: 1px solid var(--border);
   background: #f0f0f0;
+  aspect-ratio: 3 / 4;
 }
-.hero-image img { width: 100%; height: auto; display: block; }
+.hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; }
 
 /* Sections */
 section { padding: 64px 0; }
@@ -152,8 +178,8 @@ section h2 {
 .gallery-item img { width: 100%; height: auto; display: block; }
 .gallery-item.finale { flex: 0 0 400px; }
 
-/* Testimonial */
-.testimonial {
+/* Local service area */
+.local-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -162,13 +188,8 @@ section h2 {
   max-width: 680px;
   margin: 0 auto;
 }
-.testimonial blockquote {
-  font-size: 1.1rem;
-  font-style: italic;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-.testimonial cite { font-size: 0.9rem; color: var(--muted); font-style: normal; }
+.local-card h2 { margin-bottom: 12px; }
+.local-card p { color: var(--muted); }
 
 /* Contact */
 .contact { text-align: center; padding: 80px 0; }
@@ -184,10 +205,12 @@ section h2 {
   font-weight: 500;
   font-size: 1rem;
 }
+.contact .button-row { justify-content: center; }
 
 /* Footer */
 footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
 footer p { font-size: 0.85rem; color: var(--muted); }
+footer a { color: var(--muted); }
 
 /* ===== Mobile ===== */
 @media (max-width: 700px) {
@@ -201,8 +224,10 @@ footer p { font-size: 0.85rem; color: var(--muted); }
   .grid { grid-template-columns: 1fr; gap: 16px; }
   header { padding: 20px 0; }
   header .container { flex-direction: column; gap: 12px; }
-  nav { gap: 20px; }
-  .testimonial { padding: 28px 20px; }
+  nav { justify-content: center; flex-wrap: wrap; gap: 10px 18px; }
+  .button-row { flex-direction: column; }
+  .button-row .cta { width: 100%; text-align: center; }
+  .local-card { padding: 28px 20px; }
   .contact { padding: 56px 0; }
   .gallery-item { flex: 0 0 240px; }
   .gallery-item.finale { flex: 0 0 300px; }
@@ -217,9 +242,9 @@ footer p { font-size: 0.85rem; color: var(--muted); }
     <nav>
       <a href="#about">About</a>
       <a href="#what-i-teach">What I Teach</a>
-      <a href="#process">Process</a>
       <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
+      <a href="https://www.instagram.com/thewrightpractices/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://calendly.com/wriga2024/30min">Book</a>
     </nav>
   </div>
 </header>
@@ -229,8 +254,11 @@ footer p { font-size: 0.85rem; color: var(--muted); }
     <div>
       <h1>Build strength, control & awareness through hand balancing and movement</h1>
       <p class="outcome">Work toward a freestanding handstand, confident movement, and a practice you can keep for life.</p>
-      <p>I help people develop real physical capability through clear, progressive coaching — from first kick-up to skills you can trust.</p>
-      <a href="#contact" class="cta">Book a free consultation</a>
+      <p>I help people in Santa Cruz develop real physical capability through clear, progressive personal training and movement coaching — from first kick-up to skills you can trust.</p>
+      <div class="button-row">
+        <a href="https://calendly.com/wriga2024/30min" class="cta">Book a 30-minute consultation</a>
+        <a href="https://www.instagram.com/thewrightpractices/" class="cta secondary" target="_blank" rel="noopener noreferrer">Follow on Instagram</a>
+      </div>
     </div>
     <div class="hero-image">
       <img src="photo_crouch.jpeg" alt="Alex Wright — hand balancing and movement coach">
@@ -241,7 +269,7 @@ footer p { font-size: 0.85rem; color: var(--muted); }
 <section id="about" class="about">
   <div class="container">
     <h2>About</h2>
-    <p>I'm Alex Wright — hand balancing, coordination, and movement patterns coach. I've spent years developing my own practice and now help others build real physical capability at any level.</p>
+    <p>I'm Alex Wright, the coach behind The Wright Practices — offering one-on-one personal training and movement coaching in Santa Cruz, with an emphasis on hand balancing, coordination, and movement patterns.</p>
     <p>My approach is simple: clear progressions, honest feedback, and a practice you can sustain for life.</p>
   </div>
 </section>
@@ -341,11 +369,11 @@ footer p { font-size: 0.85rem; color: var(--muted); }
   </div>
 </section>
 
-<section>
+<section aria-labelledby="santa-cruz-heading">
   <div class="container">
-    <div class="testimonial">
-      <blockquote>"[Testimonial goes here — a sentence or two from a real client about their experience and results.]"</blockquote>
-      <cite>— [Client Name]</cite>
+    <div class="local-card">
+      <h2 id="santa-cruz-heading">Personal training in Santa Cruz</h2>
+      <p>Sessions are built around your current ability, goals, and movement practice. Start with a 30-minute consultation to discuss what you want to work toward and whether the coaching approach is a good fit.</p>
     </div>
   </div>
 </section>
@@ -353,14 +381,18 @@ footer p { font-size: 0.85rem; color: var(--muted); }
 <section id="contact" class="contact">
   <div class="container">
     <h2>Let's talk</h2>
-    <p>Interested in coaching? Have questions? Reach out and I'll get back to you within 24 hours.</p>
-    <a href="mailto:alex@example.com" class="cta">Send a message</a>
+    <p>Interested in movement coaching or personal training in Santa Cruz? Choose a time or reach out directly.</p>
+    <div class="button-row">
+      <a href="https://calendly.com/wriga2024/30min" class="cta">Book a 30-minute consultation</a>
+      <a href="mailto:Wriga2024@gmail.com" class="cta secondary">Email Alex</a>
+      <a href="https://www.instagram.com/thewrightpractices/" class="cta secondary" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <p>&copy; 2026 Alex Wright. All rights reserved.</p>
+    <p>&copy; 2026 Alex Wright · The Wright Practices · Santa Cruz, California · <a href="https://www.instagram.com/thewrightpractices/" target="_blank" rel="noopener noreferrer">Instagram</a></p>
   </div>
 </footer>
 

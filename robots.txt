@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mobiusframeworks.github.io/movement-coach-preview/sitemap.xml
