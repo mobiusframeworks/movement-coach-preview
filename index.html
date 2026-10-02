@@ -16,8 +16,8 @@
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "name": "The Wright Practices",
-  "alternateName": "Alex Wright Movement Coaching",
+  "name": "Alex Wright",
+  "alternateName": ["The Wright Practices", "Alex Wright Movement Coaching"],
   "url": "https://mobiusframeworks.github.io/movement-coach-preview/",
   "image": "https://mobiusframeworks.github.io/movement-coach-preview/photo_crouch.jpeg",
   "email": "mailto:Wriga2024@gmail.com",
@@ -52,7 +52,9 @@ img { display: block; max-width: 100%; }
 /* Header */
 header { padding: 28px 0; border-bottom: 1px solid var(--border); }
 header .container { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
+.brand-lockup { display: grid; gap: 1px; }
+.logo { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
+.practice-name { color: var(--accent); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 nav { display: flex; gap: 32px; }
 nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.15s; }
 nav a:hover { color: var(--ink); }
@@ -69,6 +71,7 @@ nav a:hover { color: var(--ink); }
   letter-spacing: -0.03em;
   margin-bottom: 20px;
 }
+.hero-kicker { color: var(--accent); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
 .hero .outcome { font-size: 1.1rem; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
 .hero p { font-size: 1.05rem; color: var(--muted); max-width: 500px; margin-bottom: 36px; }
 .hero .cta {
@@ -255,7 +258,10 @@ footer a { color: var(--muted); }
 
 <header>
   <div class="container">
-    <div class="logo">Alex Wright</div>
+    <div class="brand-lockup">
+      <div class="logo">Alex Wright</div>
+      <div class="practice-name">The Wright Practices</div>
+    </div>
     <nav>
       <a href="#about">About</a>
       <a href="#what-i-teach">What I Teach</a>
@@ -268,6 +274,7 @@ footer a { color: var(--muted); }
 <section class="hero">
   <div class="container">
     <div>
+      <div class="hero-kicker">The Wright Practices · Santa Cruz</div>
       <h1>Build strength, control & awareness through hand balancing and movement</h1>
       <p class="outcome">Work toward a freestanding handstand, confident movement, and a practice you can keep for life.</p>
       <p>I help people in Santa Cruz develop real physical capability through clear, progressive personal training and movement coaching — from first kick-up to skills you can trust.</p>
