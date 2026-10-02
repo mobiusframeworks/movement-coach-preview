@@ -268,7 +268,9 @@ nav a {
   transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
 }
 nav a:hover { color: #fff; background: #5A392D; transform: translateY(-1px); }
-.hero .cta, .contact .cta { background: var(--accent); }
+.hero .cta, .contact .cta { background: #3F281F; }
+.hero .cta:hover, .contact .cta:hover { background: #5A392D; }
+.hero .cta.secondary { background: transparent; color: #3F281F; border-color: #3F281F; }
 .hero-image, .card, .local-card, .calendly-shell { box-shadow: 0 12px 30px rgba(45,30,22,.07); }
 @media (max-width: 700px) { nav { gap: 8px; } nav a { min-height: 38px; padding: 8px 12px; font-size: .82rem; } }
 
